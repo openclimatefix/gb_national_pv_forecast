@@ -1,7 +1,37 @@
-name: ocf_template
+name: pv_forecast
 channels:
   - pytorch
+  # - nvidia  # If using CUDA
   - conda-forge
-  - defaults
 dependencies:
-  - pip
+  - python
+
+  # Scientific Python
+  - pandas
+  - matplotlib
+  - zarr
+  - xarray
+
+  # Filesystem utils
+  - pathy
+  - fsspec
+  - gcsfs
+
+  # Machine learning
+  - pytorch::pytorch
+  # - pytorch-cuda=11.6  # Enable if using CUDA!
+  - cpuonly  # Disable if using CUDA!
+  - pytorch-lightning
+  - einops
+  - wandb
+
+  # Interactive data analysis
+  - ipykernel
+
+  # Linters & development tools
+  - mypy
+  - ruff
+  - pytest
+  - pytest-cov
+  - black
+  - pre-commit
