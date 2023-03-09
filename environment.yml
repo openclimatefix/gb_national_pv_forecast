@@ -20,13 +20,14 @@ dependencies:
   # Machine learning
   - pytorch::pytorch
   # - pytorch-cuda=11.6  # Enable if using CUDA!
-  - cpuonly  # Disable if using CUDA!
+  - cpuonly # Disable if using CUDA!
   - pytorch-lightning
   - einops
   - wandb
 
   # Interactive data analysis
   - ipykernel
+  - notebook # Required for running notebooks in VS Code
 
   # Linters & development tools
   - mypy
