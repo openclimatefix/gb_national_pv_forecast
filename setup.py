@@ -10,7 +10,7 @@ install_requires = (this_directory / "requirements.txt").read_text().splitlines(
 
 setup(
     name="pv_forecast",
-    version="0.0.2",
+    version="0.0.3",
     license="MIT",
     description="ML experiments to forecast national solar PV power in GB.",
     author="Jack Kelly, Jacob Bieker, Peter Dudfield",
