@@ -110,10 +110,13 @@ def run_pipeline(
     return output
 
 
-class Apply:
-    def __init__(self, func: Callable):
-        self.func = func
+def denormalize(
+    predictions: pd.Series, actual: pd.Series, pv_capacity: Union[Number, pd.Series]
+) -> dict[str, pd.Series]:
+    if isinstance(pv_capacity, pd.Series) and pv_capacity.index.freq != actual.index.freq:
+        # Resample pv_capacity to match the frequency of `actual`.
+        pv_capacity = pv_capacity.resample(freq=actual.index.freq).ffill()
+    predictions_denorm = predictions * pv_capacity
+    actual_denorm = actual * pv_capacity
 
-    def __call__(self, predictions: pd.Series, actual: pd.Series) -> Union[Number, pd.Series]:
-        """Apply `func(predictions, actual)`"""
-        return self.func(predictions, actual)
+    return dict(predictions=predictions_denorm, actual=actual_denorm)
